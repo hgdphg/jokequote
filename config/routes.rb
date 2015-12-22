@@ -1,10 +1,28 @@
 Rails.application.routes.draw do
+
+  get 'dashboard/index', as: 'dashboard'
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   resources :users
+
+  get 'home_page/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#index'
+  root 'home_page#index' ,as: "home_page"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
