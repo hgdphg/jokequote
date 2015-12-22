@@ -1,0 +1,22 @@
+development: &common
+  adapter:        postgresql
+  secuel_adapter: postgres
+  encouding:      utf8
+  reconnect:      false
+  database:       jokequote_development
+  pool:           5
+  host: localhost
+  username: pguser
+  password: admin
+  timeout:        5000
+
+test:
+  <<:       *common
+  database: jokequote_test
+
+production:
+  <<:       *common
+  database: jokequote_production
+
+# Matching environments specified in this fille will override the above
+<%= IO.read('config/database.local.yml') if File.exists?('config/database.local.yml') %>
