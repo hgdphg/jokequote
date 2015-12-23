@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :joke_contents
   get 'dashboard/index', as: 'dashboard'
 
   controller :sessions do

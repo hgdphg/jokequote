@@ -1,1 +1,9 @@
-%h3= 'Home page'
+%div.titleofhomepage
+  %h3= "Wellcome to JokeQuote, happy everyday and never feel sad"
+  %h5= "If you sad, remember has many don't have tooth"
+%div.joke_content_homepage
+  %h4= @joke_content.title
+  %h5= @joke_content.content
+%div.buttonarea
+  = link_to 'This funny', home_page_url, :class => 'btn btn-primary button_link'
+  = link_to 'This not funny', home_page_url, :class => 'btn btn-success button_link'

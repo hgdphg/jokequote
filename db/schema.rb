@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222110237) do
+ActiveRecord::Schema.define(version: 20151222145642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "joke_contents", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "like_count"
+    t.integer  "dislike_count"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "joke_contents", ["user_id"], name: "index_joke_contents_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -24,4 +36,5 @@ ActiveRecord::Schema.define(version: 20151222110237) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "joke_contents", "users"
 end

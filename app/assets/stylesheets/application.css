@@ -5,3 +5,10 @@
  *= require_self
  *= require_tree .
 */
+
+footer {
+  color: #75777d;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
