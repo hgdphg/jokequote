@@ -1,9 +1,13 @@
 %div.titleofhomepage
   %h3= "Wellcome to JokeQuote, happy everyday and never feel sad"
   %h5= "If you sad, remember has many don't have tooth"
-%div.joke_content_homepage
-  %h4= @joke_content.title
-  %h5= @joke_content.content
-%div.buttonarea
-  = link_to 'This funny', home_page_url, :class => 'btn btn-primary button_link'
-  = link_to 'This not funny', home_page_url, :class => 'btn btn-success button_link'
+-if @joke_content
+  %div.joke_content_homepage
+    %h4= @joke_content.title
+    %h5= @joke_content.content
+  %div.buttonarea
+    = link_to 'This funny', like_content_path(id: @joke_content.id), method: :post, :class => 'btn btn-primary button_link'
+    = link_to 'This not funny', dislike_content_path(id: @joke_content.id), method: :post, :class => 'btn btn-success button_link'
+-else
+  %div.joke_content_homepage
+    %h3= "Hết truyện rồi, mời bạn ngày mai quay lại nhé, chúc bạn một ngày tốt lạnh"

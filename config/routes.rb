@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   resources :joke_contents
+  controller :joke_contents do
+    post 'like_content' => :like_method
+    post 'dislike_content' => :dislike_method
+  end
+
   get 'dashboard/index', as: 'dashboard'
 
   controller :sessions do
@@ -8,12 +13,6 @@ Rails.application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
-
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
 
   resources :users
 

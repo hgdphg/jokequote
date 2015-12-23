@@ -54,6 +54,35 @@ class JokeContentsController < ApplicationController
     end
   end
 
+  def content_check(content_id)
+    str = cookies[:joke_content_has_checked]? cookies[:joke_content_has_checked] : ""
+    if str == ""
+      str = content_id
+    else
+      str = str + "," + content_id
+    end
+    cookies[:joke_content_has_checked] = str
+
+  end
+
+  def like_method
+    content_check(params[:id])
+
+    jokecontent = JokeContent.find(params[:id])
+    if jokecontent
+      jokecontent.like_count += 1
+      jokecontent.save
+    end
+    redirect_to home_page_path
+  end
+
+  def dislike_method
+    content_check(params[:id])
+
+    JokeContent.dislike(params[:id])
+    redirect_to home_page_path
+  end
+
   # DELETE /joke_contents/1
   # DELETE /joke_contents/1.json
   def destroy
